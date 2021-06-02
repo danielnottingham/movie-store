@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
+  <%= link_to 'Movie-Storie', root_path, class: "navbar-brand" %>
+  <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div  class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav ml-auto">
+      <% if admin_signed_in? %>
+        <li class="nav-item">
+          <%= link_to 'Início', root_path, class: 'nav-link btn btn-primary' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Sair', destroy_admin_session_path, method: :delete, class: 'nav-link btn btn-primary' %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'Entrar', new_admin_session_path, class: 'nav-link btn btn-primary' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
