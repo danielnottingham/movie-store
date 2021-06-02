@@ -1,0 +1,16 @@
+<h1>Categories#index</h1>
+
+<table >
+  <thead>
+    <tr>
+      <th>Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= link_to category.title, category %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
