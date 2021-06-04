@@ -6,10 +6,16 @@
 
   <div  class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <%= link_to 'Início', root_path, class: 'nav-link btn btn-primary' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Categorias', categories_path, class: 'nav-link btn btn-primary' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Filmes', movies_path, class: 'nav-link btn btn-primary' %>
+      </li>
       <% if admin_signed_in? %>
-        <li class="nav-item">
-          <%= link_to 'Início', root_path, class: 'nav-link btn btn-primary' %>
-        </li>
         <li class="nav-item">
           <%= link_to 'Sair', destroy_admin_session_path, method: :delete, class: 'nav-link btn btn-primary' %>
         </li>

@@ -1,19 +1,17 @@
-<h1>Movies#index</h1>
+<h1>Lista de Filmes</h1>
 
-<table >
+<table class='table'>
   <thead>
     <tr>
       <th>Title</th>
-      <th>Description</th>
-      <th>Rent price</th>
+      <th>Categories</th>
     </tr>
   </thead>
   <tbody>
     <% @movies.each do |movie| %>
       <tr>
         <td><%= link_to movie.title, movie %></td>
-        <td><%= movie.description %></td>
-        <td><%= movie.rent_price %></td>
+        <td><%= link_to movie.category.title, category_path(movie.category_id) %></td>
       </tr>
     <% end %>
   </tbody>

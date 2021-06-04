@@ -1,6 +1,9 @@
 <h1>#Show Category</h1>
-
 <%= flash[:notice] %>
+
+<%= link_to 'Voltar', movies_path %>
+<br><br>
+
 <dl>
   <dt>Title</dt>
   <dd><%= @category.title %></dd>
@@ -12,4 +15,6 @@
 <% end %>
 <br><br>
 
-<%= link_to 'Voltar', movies_path %>
+<% @category.movies.each do |movie| %>
+  <p><%= link_to movie.title, movie %></p>
+<% end %>
