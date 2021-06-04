@@ -6,3 +6,7 @@
   <dd><%= @category.title %></dd>
 </dl>
 
+<% if admin_signed_in? %>
+  <%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-primary' %> |
+  <%= link_to 'Delete', category_path(@category), method: :delete, class: 'btn btn-primary' %> 
+<% end %>

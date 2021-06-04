@@ -1,12 +1,14 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate_admin!, only: %i[new create]
-  before_action :set_category, only: %i[show]
+  before_action :authenticate_admin!, only: %i[new create edit update destroy]
+  before_action :set_category, only: %i[show edit update destroy]
 
   def index
     @categories = Category.all
   end
 
   def show; end
+
+  def edit; end
 
   def new
     @category = Category.new
@@ -19,6 +21,19 @@ class CategoriesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def update
+    if @category.update(category_params)
+      redirect_to @category
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @category.destroy
+    redirect_to categories_path, notice: 'Category was successfully destroyed.'
   end
 
   private

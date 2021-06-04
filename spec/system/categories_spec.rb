@@ -54,4 +54,73 @@ RSpec.describe "Categories", type: :system do
       end
     end
   end
+
+  describe '#update' do
+    context 'when is admin' do
+      it 'can edit category' do
+        login_admin
+        category = create(:category)
+  
+        visit category_path(category)
+        click_on 'Edit'
+        fill_in 'Title', with: 'Thriller'
+        click_on 'Save'
+    
+        expect(current_path).to eq(category_path(category))
+        expect(page).to have_text('Thriller')
+      end
+  
+      it 'cannot update category with blank attribute' do
+        login_admin
+        category = create(:category)
+  
+        visit category_path(category)
+        click_on 'Edit'
+        fill_in 'Title', with: ''
+        click_on 'Save'
+  
+        expect(page).to have_text("Title can't be blank")
+      end
+    end
+
+    context 'when user is not an admin' do
+      it 'cannot view link edit' do
+        category = create(:category)
+
+        visit category_path(category)
+        expect(page).to_not have_link('Edit')
+      end
+
+      it 'cannot render edit page' do
+        category = create(:category)
+
+        visit edit_category_path(category)
+        expect(current_path).to eq(new_admin_session_path)
+      end
+    end
+  end
+
+  describe '#destroy' do
+    context 'when is an admin' do
+      it 'can delete a category' do
+        login_admin
+        category = create(:category)
+  
+        visit category_path(category)
+        click_on 'Delete'
+  
+        expect(current_path).to eq(categories_path)
+        expect(page).to_not have_text(category.title)
+      end
+    end
+
+    context 'when is an user' do
+      it 'cannot view link delete' do
+        category = create(:category)
+
+        visit category_path(category)
+        expect(page).to_not have_link('Delete')
+      end
+    end
+  end
 end
