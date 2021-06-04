@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :category do
-    title { Faker::Movie.title }
+    title { Faker::Name.unique.name }
   end
 end
