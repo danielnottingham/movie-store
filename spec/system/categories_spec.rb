@@ -79,7 +79,8 @@ RSpec.describe "Categories", type: :system do
         fill_in 'Title', with: ''
         click_on 'Save'
   
-        expect(page).to have_text("Title can't be blank")
+        expect(Category.new).to_not be_valid
+        expect(page).to have_text("can't be blank", count: 1)
       end
     end
 

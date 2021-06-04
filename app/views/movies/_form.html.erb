@@ -1,0 +1,30 @@
+ <% if @movie.errors.any? %>
+  <h4>We were unable to save we found some errors:</h4>
+  <ul>
+    <% @movie.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @movie, local: true do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area(:description, cols: 15, rows: 5)%>
+  </div>
+  <div>
+    <%= f.label :rent_price %>
+    <%= f.text_field :rent_price %>
+  </div>
+  <div>
+    <%= f.label :category_id %>
+    <%= f.text_field :category_id %>
+  </div>
+  <div>
+    <%= f.submit 'Save Movie' %> 
+  </div>
+<% end %>
