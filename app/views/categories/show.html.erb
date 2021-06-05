@@ -13,8 +13,9 @@
   <%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-primary' %> |
   <%= link_to 'Delete', category_path(@category), method: :delete, class: 'btn btn-primary' %> 
 <% end %>
-<br><br>
+<br><br><br>
 
+<strong><p>Filmes</p></strong>
 <% @category.movies.each do |movie| %>
   <p><%= link_to movie.title, movie %></p>
 <% end %>

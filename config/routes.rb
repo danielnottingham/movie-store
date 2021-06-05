@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'movies/index'
   get 'movies/new'
   get 'movies/create'

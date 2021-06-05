@@ -17,11 +17,24 @@
       </li>
       <% if admin_signed_in? %>
         <li class="nav-item">
+          <%= link_to current_admin.email, edit_admin_registration_path,class: 'nav-link btn btn-primary' %>
+        </li>
+        <li class="nav-item">
           <%= link_to 'Sair', destroy_admin_session_path, method: :delete, class: 'nav-link btn btn-primary' %>
+        </li>
+      <% elsif user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to current_user.email, edit_user_registration_path,class: 'nav-link btn btn-primary' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link btn btn-primary' %>
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to 'Entrar', new_admin_session_path, class: 'nav-link btn btn-primary' %>
+          <%= link_to 'Entrar', new_user_session_path, class: 'nav-link btn btn-primary' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Cadastrar', new_user_registration_path, class: 'nav-link btn btn-primary' %>
         </li>
       <% end %>
     </ul>
