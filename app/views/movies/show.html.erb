@@ -12,6 +12,12 @@
   <dd><%= @movie.category.title %></dd>
 </dl>
 
+<% if @movie.active? %>
+  <%= button_to 'Desabilitar', disable_movie_path(@movie), data: { disable_with: 'Estamos desabilitando....' } %>
+<% else %>
+  <%= button_to 'Reativar', active_movie_path(@movie), data: { disable_with: 'Estamos reativando....' } %>
+<% end %>
+
 <% if admin_signed_in? %>
   <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-primary' %> |
   <%= link_to 'Delete', movie_path(@movie), method: :delete, class: 'btn btn-primary' %> 

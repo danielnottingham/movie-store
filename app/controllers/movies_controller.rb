@@ -36,6 +36,18 @@ class MoviesController < ApplicationController
     redirect_to movies_path, notice: 'Movie was successfully destroyed.'
   end
 
+  def disable
+    @movie = Movie.find(params[:id])
+    @movie.disabled!
+    redirect_to @movie, notice: 'Filme desabilitado.'
+  end
+
+  def active
+    @movie = Movie.find(params[:id])
+    @movie.active!
+    redirect_to @movie, notice: 'Filme disponível.'
+  end
+
   private
 
   def set_movie
