@@ -1,22 +1,27 @@
-<h1>#Show Movie</h1>
 
-<%= flash[:notice] %>
-<dl>
-  <dt>Title:</dt>
-  <dd><%= @movie.title %></dd>
-  <dt>Description:</dt>
-  <dd><%= @movie.description %></dd>
-  <dt>Rent price:</dt>
-  <dd><%= @movie.rent_price %></dd>
-  <dt>Category:</dt>
-  <dd><%= @movie.category.title %></dd>
-</dl>
-
+<h1>Categoria(<%= @movie.category.title %>) / Filme(<%= @movie.title %>)</h1>
 <% if @movie.active? %>
-  <%= button_to 'Desabilitar', disable_movie_path(@movie), data: { disable_with: 'Estamos desabilitando....' } %>
+  <dl>
+    <dt>Title:</dt>
+    <dd><%= @movie.title %></dd>
+    <dt>Description:</dt>
+    <dd><%= @movie.description %></dd>
+    <dt>Rent price:</dt>
+    <dd><%= @movie.rent_price %></dd>
+  </dl>
 <% else %>
-  <%= button_to 'Reativar', active_movie_path(@movie), data: { disable_with: 'Estamos reativando....' } %>
+ <p>Filme temporariamente indisponível.</p>
 <% end %>
+
+<% if admin_signed_in? %>
+  <% if @movie.active? %>
+    <%= button_to 'Desabilitar', disable_movie_path(@movie), data: { disable_with: 'Estamos desabilitando....' } %>
+  <% else %>
+    <%= button_to 'Reativar', active_movie_path(@movie), data: { disable_with: 'Estamos reativando....' } %>
+  <% end %>
+<% end %>
+
+<br>
 
 <% if admin_signed_in? %>
   <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-primary' %> |
